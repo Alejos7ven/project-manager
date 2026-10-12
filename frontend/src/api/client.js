@@ -29,7 +29,9 @@ api.interceptors.response.use(
       localStorage.removeItem('auth_user');
       // If we are not already on the login page, redirect
       if (!window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const loginPath = baseUrl.endsWith('/') ? `${baseUrl}login` : `${baseUrl}/login`;
+        window.location.href = loginPath;
       }
     }
     return Promise.reject(error);
