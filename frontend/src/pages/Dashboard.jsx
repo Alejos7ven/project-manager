@@ -88,20 +88,19 @@ const Dashboard = () => {
         <div className="flex items-center gap-2.5 shrink-0">
           <Link to="/clients">
             <Button
-              variant="secondary"
+              variant="outline"
               size="sm"
               icon={Plus}
-              className="bg-white/10 hover:bg-white/20 text-white border-white/20"
+              className="border-white/40 text-white hover:bg-white/10 hover:text-white"
             >
               Add Client
             </Button>
           </Link>
           <Link to="/projects">
             <Button
-              variant="primary"
+              variant="white"
               size="sm"
               icon={Plus}
-              className="bg-white text-indigo-900 hover:bg-indigo-50 shadow-md font-semibold"
             >
               New Project
             </Button>

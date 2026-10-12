@@ -39,9 +39,9 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
+    <div className="h-screen w-full bg-slate-50 flex flex-col md:flex-row overflow-hidden">
       {/* Mobile Top Header */}
-      <div className="md:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-30">
+      <div className="md:hidden shrink-0 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between z-30">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-xs">
             <Briefcase className="w-4 h-4" />
@@ -66,9 +66,9 @@ const Layout = ({ children }) => {
         />
       )}
 
-      {/* Sidebar Navigation */}
+      {/* Sidebar Navigation - Fixed desktop sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col transition-transform duration-200 ease-in-out md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col transition-transform duration-200 ease-in-out md:static md:translate-x-0 md:h-screen md:shrink-0 ${
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -147,9 +147,9 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Desktop Top Header */}
-        <header className="hidden md:flex bg-white border-b border-slate-200/80 px-8 py-4 items-center justify-between sticky top-0 z-20">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+        {/* Desktop Top Header - Fixed at top of module */}
+        <header className="hidden md:flex shrink-0 bg-white border-b border-slate-200/80 px-8 py-4 items-center justify-between z-20">
           <div>
             <h2 className="text-xl font-bold text-slate-900 tracking-tight m-0">
               {getPageTitle()}
@@ -167,9 +167,11 @@ const Layout = ({ children }) => {
           </div>
         </header>
 
-        {/* Dynamic Page Body */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto overflow-y-auto">
-          {children}
+        {/* Dynamic Page Body - Only this module scrolls */}
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 w-full">
+          <div className="max-w-7xl mx-auto w-full pb-8">
+            {children}
+          </div>
         </main>
       </div>
     </div>
